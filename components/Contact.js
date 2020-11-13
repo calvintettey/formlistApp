@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 
   icon: {
     flex: 1,
-    marginRight:6,
+    marginRight:12,
     marginVertical:12
   },
 });

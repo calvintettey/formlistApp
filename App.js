@@ -8,6 +8,7 @@ import LoginScreen from "./LoginScreen";
 export default function App() {
   return (
     <View style={styles.container}>
+    
       {/* <LoginScreen/> */}
 
       <ContactsScreen />
