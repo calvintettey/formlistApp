@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
-import store from "./src/redux/store";
 import AppContainer from "./src/navigation/navigation";
+import store from "./src/redux/store";
 
 export default function App() {
   return (
@@ -11,12 +11,12 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 100,
-    // flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     marginTop: 100,
+//     // flex: 1,
+//     // backgroundColor: '#fff',
+//     // alignItems: 'center',
+//     // justifyContent: 'center',
+//   },
+// });

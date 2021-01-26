@@ -1,22 +1,18 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import ContactsScreen from "./ContactsScreen";
-import Contact from "./components/Contact";
-import LoginScreen from "./LoginScreen";
-import { Provider } from "react-redux";
-import store from './src/redux/store'
+import LoginScreen from "../../LoginScreen";
 import SignupScreen from "../../SignupScreen";
+import ContactsScreen from "../../ContactsScreen"
 
 const Stack = createStackNavigator();
 export default function AppContainer() {
   return (
-      <NavigationContainer>
+      <NavigationContainer style={styles.container} >
           <Stack.Navigator>
-              <Stack.Screen name="Log In" component={LoginScreen} />
-              <Stack.Screen name="Register" component={SignupScreen} />
+              <Stack.Screen options={{ headerShown: false }} name="Log In" component={LoginScreen} />
+              <Stack.Screen options={{ headerShown: false }} name="Register" component={SignupScreen} />
               <Stack.Screen name="Contacts" component={ContactsScreen} />
           </Stack.Navigator>
       </NavigationContainer>
