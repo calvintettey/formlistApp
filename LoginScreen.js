@@ -7,6 +7,7 @@ import {
   ScrollView,
   View,
 } from "react-native";
+import {connect} from 'react-redux'
 
 class LoginScreen extends Component {
     
@@ -123,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default connect({},{}) (LoginScreen);

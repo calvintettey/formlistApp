@@ -15,7 +15,7 @@ export default function AppContainer() {
 
         <ContactsScreen />
       </View>
-    </Provider>
+    </Provider> 
   );
 }
 

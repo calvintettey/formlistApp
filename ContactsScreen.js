@@ -1,6 +1,7 @@
 import React from "react";
 import { View, FlatList } from "react-native";
 import Contact from "./components/Contact";
+import {connect} from 'react-redux'
 
 export default function ContactsScreen() {
   const contacts = [
