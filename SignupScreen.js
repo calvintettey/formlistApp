@@ -23,8 +23,8 @@ class SignupScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <View style={styles.loginTextContainer}>
-          <Text style={styles.loginText}>Log In</Text>
+        <View style={styles.signupTextContainer}>
+          <Text style={styles.signupText}>Sign Up</Text>
         </View>
 
         <View>
@@ -66,9 +66,9 @@ class SignupScreen extends Component {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.noAccountContainer}>
-          <Text style={styles.noAccountText}>Already have an account?</Text>
-          <Text style={styles.signUpText}>Login</Text>
+        <View style={styles.yesAccountContainer}>
+          <Text style={styles.yesAccountText}>Already have an account?</Text>
+          <Text style={styles.loginText}>Log in</Text>
         </View>
       </ScrollView>
     );
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     marginTop: 120,
   },
 
-  loginText: {
+  signupText: {
     fontSize: 50,
     color: "#58269e",
   },
 
-  loginTextContainer: {
+  signupTextContainer: {
     marginBottom: 30
   },
 
@@ -118,17 +118,17 @@ const styles = StyleSheet.create({
     fontSize: 27,
   },
 
-  noAccountContainer: {
+  yesAccountContainer: {
     flexDirection: "row",
     justifyContent: "center",
   },
 
-  noAccountText: {
+  yesAccountText: {
     marginRight: 10,
     fontSize: 16,
   },
 
-  signUpText: {
+  loginText: {
     fontSize: 16,
     color: "#58269e",
   },

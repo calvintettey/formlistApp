@@ -7,18 +7,16 @@ import {
   ScrollView,
   View,
 } from "react-native";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class LoginScreen extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state={
-            username:"",
-            password:""
-        }
-    }
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
 
   render() {
     return (
@@ -33,8 +31,8 @@ class LoginScreen extends Component {
             placeholder="Username"
             placeholderTextColor="#aaaaaa"
             value={this.state.username}
-            onChangeText={(username)=>{
-            this.setState({username})
+            onChangeText={(username) => {
+              this.setState({ username });
             }}
           />
           <TextInput
@@ -43,22 +41,34 @@ class LoginScreen extends Component {
             placeholderTextColor="#aaaaaa"
             secureTextEntry={true}
             value={this.state.password}
-            onChangeText={(password)=>{
-                this.setState({password})
+            onChangeText={(password) => {
+              this.setState({ password });
             }}
           />
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </View>
 
         <View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("Contacts");
+            }}
+          >
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.noAccountContainer}>
           <Text style={styles.noAccountText}>Don't have an account?</Text>
-          <Text style={styles.signUpText}>Sign up</Text>
+          <Text
+            style={styles.signUpText}
+            onPress={() => {
+              navigation.navigate("Register");
+            }}
+          >
+            Sign up
+          </Text>
         </View>
       </ScrollView>
     );
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
   },
 
   loginTextContainer: {
-    marginBottom: 30
+    marginBottom: 30,
   },
 
   input: {
@@ -85,7 +95,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#58269e",
     fontSize: 20,
     height: 20,
-    marginTop:70
+    marginTop: 70,
   },
 
   forgotPassword: {
@@ -124,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect({},{}) (LoginScreen);
+export default connect({}, {})(LoginScreen);
