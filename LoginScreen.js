@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import { connect } from "react-redux";
+import { loginEmailAccount } from "./src/redux/actions/authActions";
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -18,8 +19,18 @@ class LoginScreen extends Component {
     };
   }
 
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleOnSubmit = () => {
+    this.props.loginEmailAccount(this.state.email, this.state.password);
+  };
+
   render() {
-    const {navigation} = this.props
+    const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.loginTextContainer}>
@@ -27,13 +38,17 @@ class LoginScreen extends Component {
         </View>
 
         <View>
+          {auth.error.login && (
+            <Text style={{ color: "red" }}>{auth.error.login}</Text>
+          )}
+
           <TextInput
             style={styles.input}
             placeholder="Username"
             placeholderTextColor="#aaaaaa"
             value={this.state.username}
-            onChangeText={(username) => {
-              this.setState({ username });
+            onChangeText={(text) => {
+              this.handleUpdateState("email", text);
             }}
           />
           <TextInput
@@ -42,20 +57,15 @@ class LoginScreen extends Component {
             placeholderTextColor="#aaaaaa"
             secureTextEntry={true}
             value={this.state.password}
-            onChangeText={(password) => {
-              this.setState({ password });
+            onChangeText={(text) => {
+              this.handleUpdateState("password", text);
             }}
           />
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </View>
 
         <View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("Contacts");
-            }}
-          >
+          <TouchableOpacity style={styles.button} onPress={this.handleOnSubmit}>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
         </View>
@@ -135,4 +145,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect({}, {}) (LoginScreen);
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+
+export default connect({ mapStateToProp }, { loginEmailAccount })(LoginScreen);

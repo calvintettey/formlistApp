@@ -1,14 +1,18 @@
 const intialState = {
   login: false,
-  user: null
-}
+  user: null,
+};
 
-export default (state, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case "LOGGED_IN":
-      return{login:true, user:action.payload}
+      return { ...state, login: true, user: action.payload };
     case "LOGGED_OUT":
-      return{login:false, user:null}
+      return { ...state, login: false, user: null };
+    case "REGISTER_ERROR":
+      return { ...state, error: { register: action.payload } };
+    case "LOGIN_ERROR":
+      return { ...state, error: { register: action.payload } };
     default:
       return state;
   }

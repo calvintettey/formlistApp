@@ -8,6 +8,10 @@ import {
   View,
 } from "react-native";
 import { connect } from "react-redux";
+import {
+  createEmailAccount,
+  registerError,
+} from "./src/redux/actions/authActions";
 
 class SignupScreen extends Component {
   constructor(props) {
@@ -15,12 +19,25 @@ class SignupScreen extends Component {
     this.state = {
       username: "",
       password: "",
-      password2: "",
+      confirm: "",
     };
   }
+  handleUpdateState = (name, value) => {
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleOnSubmit = () => {
+    if (this.state.password != this.state.confirm) {
+      this.props.registerError("Passwords do not match");
+      return;
+    }
+    this.props.createEmailAccount(this.state.email, this.state.password)
+  };
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, auth } = this.props;
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.signupTextContainer}>
@@ -28,13 +45,15 @@ class SignupScreen extends Component {
         </View>
 
         <View>
+          {auth.error.register && <Text style={{ color: "red" }}>{auth.error.register}</Text>}
+
           <TextInput
             style={styles.input}
             placeholder="Username"
             placeholderTextColor="#aaaaaa"
             value={this.state.username}
-            onChangeText={(username) => {
-              this.setState({ username });
+            onChangeText={(text) => {
+              this.handleUpdateState("email", text);
             }}
           />
           <TextInput
@@ -43,8 +62,8 @@ class SignupScreen extends Component {
             placeholderTextColor="#aaaaaa"
             secureTextEntry={true}
             value={this.state.password}
-            onChangeText={(password) => {
-              this.setState({ password });
+            onChangeText={(text) => {
+              this.handleUpdateState("password", text);
             }}
           />
           <TextInput
@@ -52,21 +71,16 @@ class SignupScreen extends Component {
             placeholder="Password Again"
             placeholderTextColor="#aaaaaa"
             secureTextEntry={true}
-            value={this.state.password}
-            onChangeText={(password2) => {
-              this.setState({ password2 });
+            value={this.state.confirm}
+            onChangeText={(text) => {
+              this.handleUpdateState("confirm", text);
             }}
           />
           <Text style={styles.forgotPassword}>Forgot password?</Text>
         </View>
 
         <View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Contacts");
-            }}
-            style={styles.button}
-          >
+          <TouchableOpacity onPress={this.handleOnSubmit} style={styles.button}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
@@ -146,4 +160,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect({}, {}) (SignupScreen);
+const mapStateToProp = (state) => {
+  return { auth: state };
+};
+
+export default connect(
+  { mapStateToProp },
+  { createEmailAccount, registerError }
+)(SignupScreen);
