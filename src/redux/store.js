@@ -1,6 +1,18 @@
 import { createStore, applyMiddleware } from "redux";
 import authReducer from "./reducers/authReducer";
+import { AsyncStorage } from "reacrt-native";
 import thunk from "redux-thunk";
-let store = createStore(authReducer, applyMiddleware(thunk));
+import {persistStore, persistReducer} from 'redux-persist'
 
-export default store;
+const persistConfig = {
+    key:"root",
+    storage: AsyncStorage
+}
+
+const persistedReducer = persistReducer(persistConfig, authReducer)
+
+let store = createStore(persistedReducer, applyMiddleware(thunk));
+
+let persistor = persistStore(store)
+
+export {store, persistor};

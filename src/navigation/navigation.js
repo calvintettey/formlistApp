@@ -6,14 +6,26 @@ import LoginScreen from "../../LoginScreen";
 import SignupScreen from "../../SignupScreen";
 import ContactsScreen from "../../ContactsScreen";
 import { connect } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { logout } from "../redux/actions/authActions";
 
 const Stack = createStackNavigator();
-function AppContainer({ auth }) {
+function AppContainer({ auth, logout }) {
   return (
     <NavigationContainer style={styles.container}>
       {auth.login ? (
         <Stack.Navigator>
-          <Stack.Screen name="Contacts" component={ContactsScreen} />
+          <Stack.Screen
+            name="Contacts"
+            options={{
+              headerRight: () => (
+                <TouchableOpacity style={{ marginRight: 20 }} onPress={logout}  >
+                  <Text>Log Out</Text>
+                </TouchableOpacity>
+              ),
+            }}
+            component={ContactsScreen}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
@@ -50,8 +62,9 @@ const styles = StyleSheet.create({
   },
 });
 
+
 const mapStateToProp = (state) => {
   return { auth: state };
 };
 
-export default connect(mapStateToProp)(AppContainer);
+export default connect(mapStateToProp, {logout})(AppContainer);
