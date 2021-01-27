@@ -19,6 +19,7 @@ class LoginScreen extends Component {
   }
 
   render() {
+    const {navigation} = this.props
     return (
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.loginTextContainer}>
@@ -134,4 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default connect({}, {}) (LoginScreen);

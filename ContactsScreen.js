@@ -3,7 +3,7 @@ import { View, FlatList } from "react-native";
 import Contact from "./components/Contact";
 import {connect} from 'react-redux'
 
-export default function ContactsScreen() {
+export default function ContactsScreen({navigation}) {
   const contacts = [
     { name: "Sam Bob", number: "043-565-7665" },
     { name: "John Mike", number: "023-543-2233" },
