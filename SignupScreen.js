@@ -29,11 +29,11 @@ class SignupScreen extends Component {
   };
 
   handleOnSubmit = () => {
-    if (this.state.password != this.state.confirm) {
+    if (this.state.password !== this.state.confirm) {
       this.props.registerError("Passwords do not match");
       return;
     }
-    this.props.createEmailAccount(this.state.email, this.state.password)
+    this.props.createEmailAccount(this.state.email, this.state.password);
   };
 
   render() {
@@ -45,7 +45,9 @@ class SignupScreen extends Component {
         </View>
 
         <View>
-          {auth.error.register && <Text style={{ color: "red" }}>{auth.error.register}</Text>}
+          {auth.error.register && (
+            <Text style={{ color: "red" }}>{auth.error.register}</Text>
+          )}
 
           <TextInput
             style={styles.input}

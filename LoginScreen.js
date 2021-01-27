@@ -8,7 +8,10 @@ import {
   View,
 } from "react-native";
 import { connect } from "react-redux";
-import { loginEmailAccount } from "./src/redux/actions/authActions";
+import {
+  loginEmailAccount,
+  registerError,
+} from "./src/redux/actions/authActions";
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -149,4 +152,4 @@ const mapStateToProp = (state) => {
   return { auth: state };
 };
 
-export default connect({ mapStateToProp }, { loginEmailAccount })(LoginScreen);
+export default connect(mapStateToProp, { loginEmailAccount })(LoginScreen);

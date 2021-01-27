@@ -19,7 +19,7 @@ function AppContainer({ auth, logout }) {
             name="Contacts"
             options={{
               headerRight: () => (
-                <TouchableOpacity style={{ marginRight: 20 }} onPress={logout}  >
+                <TouchableOpacity style={{ marginRight: 20 }} onPress={logout}>
                   <Text>Log Out</Text>
                 </TouchableOpacity>
               ),
@@ -62,9 +62,8 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const mapStateToProp = (state) => {
   return { auth: state };
 };
 
-export default connect(mapStateToProp, {logout})(AppContainer);
+export default connect(mapStateToProp, { logout })(AppContainer);
