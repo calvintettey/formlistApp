@@ -1,6 +1,7 @@
-const intialState = {
+const initialState = {
   login: false,
   user: null,
+  error:{}
 };
 
 export default (state = initialState, action) => {
@@ -12,7 +13,7 @@ export default (state = initialState, action) => {
     case "REGISTER_ERROR":
       return { ...state, error: { register: action.payload } };
     case "LOGIN_ERROR":
-      return { ...state, error: { register: action.payload } };
+      return { ...state, error: { login: action.payload } };
     default:
       return state;
   }

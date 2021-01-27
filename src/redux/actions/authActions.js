@@ -47,7 +47,6 @@ function loggedin(user) {
 function loggedout(user) {
   return {
     type: "LOGGED_OUT",
-    payload: user,
   };
 }
 
