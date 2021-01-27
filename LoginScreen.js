@@ -17,7 +17,7 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
     };
   }
@@ -47,9 +47,9 @@ class LoginScreen extends Component {
 
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="Email"
             placeholderTextColor="#aaaaaa"
-            value={this.state.username}
+            value={this.state.email}
             onChangeText={(text) => {
               this.handleUpdateState("email", text);
             }}

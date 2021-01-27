@@ -17,7 +17,7 @@ class SignupScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
       confirm: "",
     };
@@ -51,9 +51,9 @@ class SignupScreen extends Component {
 
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="Email"
             placeholderTextColor="#aaaaaa"
-            value={this.state.username}
+            value={this.state.email}
             onChangeText={(text) => {
               this.handleUpdateState("email", text);
             }}
@@ -167,6 +167,6 @@ const mapStateToProp = (state) => {
 };
 
 export default connect(
-  { mapStateToProp },
+   mapStateToProp ,
   { createEmailAccount, registerError }
 )(SignupScreen);
