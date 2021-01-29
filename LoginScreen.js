@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import {
   loginEmailAccount,
-  registerError,
+  loginError,
 } from "./src/redux/actions/authActions";
 
 class LoginScreen extends Component {
@@ -152,4 +152,4 @@ const mapStateToProp = (state) => {
   return { auth: state };
 };
 
-export default connect(mapStateToProp, { loginEmailAccount })(LoginScreen);
+export default connect(mapStateToProp, { loginEmailAccount, loginError })(LoginScreen);
